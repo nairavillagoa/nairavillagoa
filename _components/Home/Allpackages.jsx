@@ -11,11 +11,11 @@ const Allpackages = () => {
 
 
     return (
-        <section className="bg-[#f4f1ed] py-16 px-6 md:px-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <section className="bg-[#f4f1ed] py-16 lg:px-6 md:px-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-4 px-4 lg:py-0 lg:px-0">
                 {/* Text Section */}
-                <div className='flex flex-col justify-between h-full w-[80%] p-10'>
-                    <p className="text-6xl h-full font-serif text-[#5a3e2b] mb-4 text-start self-start" style={{ fontFamily: '"Playfair Display", serif' }}>The Family Suite</p>
+                <div className='flex flex-col lg:justify-between h-full w-full lg:w-[80%] lg:p-10'>
+                    <p className="text-4xl lg:text-6xl h-full font-serif text-[#5a3e2b] mb-4 text-start self-start" style={{ fontFamily: '"Playfair Display", serif' }}>The Family Suite</p>
                     <p className="text-sm text-gray-600">
                         Showcasing one of our finest rooms, this elegant space features a plush king bed, warm lighting, and a serene vibe. Enjoy a private balcony, swimming pool, AC comfort, and modern amenities like power backup, satellite TV, free Wi-Fi, daily housekeeping, 24/7 food delivery, caretaker support, and laundry service.
                     </p>
@@ -80,7 +80,7 @@ const Allpackages = () => {
 
                 {/* Image Section */}
                 <div className="relative">
-                    <div className='p-10'>
+                    <div className='lg:p-10'>
                         <img
                             src={IMAGES["5"]}
                             alt="The Family Suite"

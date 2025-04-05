@@ -8,9 +8,7 @@ export const metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  icons: {
-    icon: siteConfig.favicon,
-  },
+  icons: "/img/nairalogo.png",
   ownername: siteConfig.ownername,
   companyname: siteConfig.companyname,
   url: siteConfig.link,

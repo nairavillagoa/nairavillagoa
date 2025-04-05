@@ -6,9 +6,9 @@ const NumberStats = () => {
 
 
     return (
-        <div className="w-full h-full flex flex-col justify-center items-center bg-[#efebe5] px-16 py-16">
-            <h2 className="text-6xl text-center mb-6 border-b-2 pb-2" style={{ fontFamily: '"Playfair Display", serif' }}>Accommodations</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+        <div className="w-full h-full flex flex-col justify-center items-center bg-[#efebe5] py-16 lg:px-16 lg:py-16">
+            <h2 className="text-4xl md-text-5xl lg:text-6xl text-center mb-6 border-b-2 pb-2" style={{ fontFamily: '"Playfair Display", serif' }}>Accommodations</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full">
 
 
                 {/* New 03 AC Bedrooms */}

@@ -15,9 +15,9 @@ const OurOffers = () => {
 
 
   return (
-    <section className="bg-[#f4f1ed] py-16 px-6 md:px-20">
+    <section className="bg-[#f4f1ed] py-4 px-4 lg:py-16 lg:px-6 md:px-20">
       <div className="flex flex-col md:flex-row gap-8">
-        <div className="relative w-[30%]">
+        <div className="relative w-full lg:w-[30%]">
           <div className='w-full h-full'>
             <img
               src={IMAGES["48"]}
@@ -41,14 +41,14 @@ const OurOffers = () => {
         </div>
 
         {/* Image Section */}
-        <div className="relative w-[70%]">
+        <div className="relative w-full lg:w-[70%]">
           <div className='w-full h-full'>
             <img
               src={IMAGES["3"]}
               alt="The Family Suite"
               className="w-full h-[30rem] object-cover shadow-lg"
             />
-            <div className="border flex px-4 py-2 h-20 mt-4 text-center justify-center items-center text-gray-700 text-sm bg-white shadow">
+            <div className="border flex px-4 py-2 h-auto lg:h-20 mt-4 text-center justify-center items-center text-gray-700 text-sm bg-white shadow">
               <p><span className='font-semibold'>Modern & Stylish Bathroom: </span>
               Experience luxury in our elegantly designed bathroom, featuring a spacious shower area, sleek vanity, and contemporary fixtures. The blend of marble and textured blue tiles adds a sophisticated touch, while the well-lit mirror and thoughtful details create a refreshing and relaxing ambiance.</p>
             </div>
