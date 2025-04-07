@@ -12,7 +12,7 @@ export default function ClientLayout({ children }) {
     <Providers>
       {/* <NavBar /> */}
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </Providers>
   );
 }

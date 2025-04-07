@@ -1,5 +1,7 @@
+import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa'; 
+
 export const siteConfig = {
-  name: "Naira Villa Goa",
+  name: "Naira Villa",
   name1:"Prospera",
   name2:"Hospitality",
   logoname: "Prospera",
@@ -35,6 +37,10 @@ export const siteConfig = {
   TermsConditions: "Terms & Conditions",
   PrivacyPolicy: "Privacy Policy",
   RefundPolicy: "Refund Policy",
+  description: `Welcome to Naira Villa – your private escape in the heart of Pavagadh and Halol.
+Perfect for families, friends, and travelers seeking comfort and privacy, Naira Villa offers a serene retreat with 3 spacious air-conditioned bedrooms, 2 air-conditioned living rooms, and a private swimming pool.
+
+Whether you're lounging by the pool, relaxing in our cozy interiors, or exploring nearby attractions, Naira Villa combines modern amenities with homely charm to ensure a peaceful and memorable stay. Enjoy personalized hospitality and unwind in your own private paradise at Naira Villa.`,
 
   keywords: [
     "Prospera",
@@ -324,12 +330,9 @@ export const siteConfig = {
       href: "/policies/refund-policy",
     },
   ],
-
-  links: {
-    facebook: "https://www.facebook.com/profile.php?id=61562089264990&mibextid=ZbWKwL",
-    instagram: "https://www.instagram.com/prosperahospitality/",
-    twitter: "https://twitter.com/",
-    linkdin: "https://www.linkedin.com/company/prosperaa-hospitality",
-    github: "https://github.com/prosperahospitality",
-  },
+  socialItems : [
+    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61562089264990&mibextid=ZbWKwL", icon: FaFacebookF },
+    { label: "Instagram", href: "https://www.instagram.com/prosperahospitality/", icon: FaInstagram },
+    { label: "Twitter", href: "https://twitter.com/", icon: FaTwitter },
+]
 };

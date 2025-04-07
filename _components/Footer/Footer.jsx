@@ -1,563 +1,224 @@
 "use client";
-import { Facebook, Instagram, Linkedin, Youtube, ArrowUpRight } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Divider } from "@nextui-org/react";
 import { siteConfig } from "@/config/siteconfig";
 import { Link } from "@nextui-org/link";
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import { Plus } from "lucide-react";
-import Image from "next/image";
-import IMAGES from "@/public/index";
+
 import { usePathname } from "next/navigation";
-import axios from "axios";
+import { FiFacebook } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa6";
+import { RiTwitterXFill } from "react-icons/ri";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 export default function Footer() {
+  const pathname = usePathname();
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  let defaultDate = today(getLocalTimeZone());
+  const nextDay = defaultDate.add({ days: 1 });
 
-  const iconComponents = {
-    Facebook: <Facebook className="size-5" />,
-    Instagram: <Instagram className="size-5" />,
-    Linkedin: <Linkedin className="size-5" />,
-    Youtube: <Youtube className="size-5" />,
+  const formatDateee = (date) => {
+    const day = String(date.day).padStart(2, "0");
+    const month = String(date.month).padStart(2, "0");
+    const year = String(date.year);
+    return `${day}-${month}-${year}`;
   };
 
-  const socialLinks = [
-    { href: "https://facebook.com", icon: "Facebook" },
-    { href: "https://linkedin.com", icon: "Linkedin" },
-    { href: "https://youtube.com", icon: "Youtube" },
-    { href: "https://instagram.com", icon: "Instagram" },
-  ];
-
-  const pathname = usePathname();
+  const [checkindate, setCheckindate] = useState(formatDateee(defaultDate));
+  const [checkoutdate, setCheckoutdate] = useState(formatDateee(nextDay));
 
   const itemClasses = {
     base: "w-full",
-    title: "text-base xl:text-2xl text-white/60",
-    trigger: "px-2 py-0 data-[hover=true]:bg-primary-100 rounded-lg h-14 2xl:h-20 flex items-center",
-    indicator: "text-small xl:text-large text-white/60",
+    title: "text-base xl:text-2xl text-black/60",
+    trigger:
+      "px-2 py-0 data-[hover=true]:bg-primary-100 rounded-lg h-14 2xl:h-20 flex items-center",
+    indicator: "text-small xl:text-large text-black/60",
     content: "text-small xl:text-medium px-2",
   };
 
-  const handleSubmit = async () => {
+  const getCurrentDate = () => {
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+    const year = date.getFullYear();
 
-    console.log("Data", email, fullName, phoneNumber)
-
-    const response1 = await fetch('/api/enquiries/serviceenquiry', {
-
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        operation: "serviceContact2",
-        formValues: {
-          name: fullName,
-          email: email,
-          number: phoneNumber,
-        },
-      }),
-    });
-
-    const data1 = await response1.json();
-
-    const response = await axios.post("/api/send-email", {
-      operation: "footercontact",
-      name: fullName,
-      email: email,
-      number: phoneNumber
-    })
-    if (response.data.status === 200) {
-      alert("Email sent and enquiry saved successfully")
-      setFullName("");
-      setEmail("");
-      setPhoneNumber("");
-    }
-
-    // else if (response.data.status === 402) {
-    //   Swal.fire({
-    //     title: "Number must be exactly 10 digits and contain only numeric values",
-    //     // text: "Team connect with you soon",
-    //     icon: "success"
-    //   });
-    // }
-    //     const whatsappMessage = `Hi, I am interested in your service*.
-
-    // *My details are -* 
-
-    //   *Name:* ${fullName},
-    //   *Phone:* ${phoneNumber}, 
-    //   *Email:* ${email}`;
-
-    //     const whatsappURL = `https://wa.me/7738527031?text=${encodeURIComponent(
-    //       whatsappMessage
-    //     )}`;
-    //     window.open(whatsappURL, "_blank");
-
-    //     setFullName("");
-    //     setEmail("");
-    //     setPhoneNumber(0);
+    return `${day}-${month}-${year}`;
   };
 
+  const currentDate = getCurrentDate();
+  const hotelName = "Ocean's Pearl Resort";
+
+  const addOneDay = (dateString) => {
+    const [day, month, year] = dateString.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    date.setDate(date.getDate() + 1);
+    return formatDate(date);
+  };
+
+  // Function to format the date as "DD-MM-YYYY"
+  const formatDate = (date) => {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  const checkoutDate = addOneDay(currentDate);
 
   return (
-    <>
-
-
-      {/* <div className="w-[80%] mx-auto mb-16 mt-16">
-       
-        <div className="lg:hidden w-full mx-auto mt-4">
-          <div className="mt-6 w-full mx-auto">
-            <Accordion itemClasses={itemClasses} showDivider={true}>
-              <AccordionItem
-                key="1"
-                aria-label="Turnaround"
-                title="Why Choose Prospera ?"
-                indicator={<Plus />}
-              >
-                Choose Naira Villa Goa for a seamless blend of strategic
-                prowess, innovative web design and development, targeted digital
-                marketing, and meticulous revenue management. With an adept team
-                guiding every step, we craft comprehensive strategies tailored
-                to your business goals. From thorough market research to
-                captivating website creation, dynamic digital campaigns, and
-                revenue optimization tactics, we deliver results driven
-                solutions. Our holistic approach ensures your brand stands out
-                amidst competition, maximizing revenue and guest satisfaction.
-                Entrust Naira Villa Goa to elevate your business,
-                leveraging expertise, and cutting edge techniques for
-                unparalleled success in the dynamic hospitality industry.
-              </AccordionItem>
-              <AccordionItem
-                key="2"
-                aria-label="Communicate"
-                title="What is Brand Management and Why is it Important ?"
-                indicator={<Plus />}
-              >
-                Brand management involves shaping a brand&apos;s image, perception,
-                and reputation, crucial for differentiation, trust building, and
-                revenue growth. Naira Villa Goa specializes in brand
-                management, offering tailored solutions to enhance brand equity
-                and visibility. Through strategic planning and innovative
-                branding initiatives, Prospera helps businesses craft compelling
-                narratives, engage with audiences effectively, and build
-                enduring brand relationships. Partner with Prospera to fortify
-                your brand&apos;s position and drive sustainable growth in today&apos;s
-                competitive landscape
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Process"
-                title="How Can Digital Marketing Enhance Brand Visibility ?"
-                indicator={<Plus />}
-              >
-                Digital marketing utilizes online channels like social media,
-                search engines, email, and content marketing to boost brand
-                visibility and drive traffic. We at Naira Villa Goa
-                specializes in crafting tailored strategies across these
-                channels just for your product . From targeted social media
-                campaigns to SEO and email marketing, Prospera ensures your
-                brand stands out, driving sustained growth in the digital
-                landscape.
-              </AccordionItem>
-              <AccordionItem
-                key="4"
-                aria-label="Design"
-                title="How Does Revenue Management Impact Brand Growth ?"
-                indicator={<Plus />}
-              >
-                Revenue management optimizes pricing, distribution, and
-                inventory to maximize profitability and brand value. Prospera
-                Hospitality specializes in tailored strategies that align with
-                market demand, driving sustainable growth and maintaining brand
-                consistency. With meticulous analysis and strategic
-                implementation, Prospera helps businesses unlock revenue
-                potential, enhance customer satisfaction, and stay competitive.
-                Partner with Prospera to optimize revenue and elevate your
-                brand&apos;s performance
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </div>
-
-
-       
-        <div className="hidden lg:block w-full">
-          <div className="flex justify-between items-center bg-gray-100 rounded-xl">
-            <div className="w-[70%] pl-8">
-              <div className="text-7xl font-semibold text-[#800000]">40% 0ff</div>
-              <div className="text-xl mt-3 font-medium  text-gray-600 gap-2"><span className="pr-2">This Diwali get</span><Button isIconOnly className="rounded-full bg-white h-8 w-5"><ArrowUpRight className="h-5" /></Button></div>
-              <div className="flex flex-row justify-between">
-                <div className="text-xl font-medium text-gray-600">on all services of Naira Villa Goa</div>
-                <div className="text-sm content-end text-gray-400">Offer valid for limited period only* </div>
-              </div>
-            </div>
-            <div className="w-[30%]">
-              <Image
-                alt='image'
-                src={IMAGES.mandalaimg}
-                width={600}
-                height={600}
-                className='object-scale-down w-[80%] h-[80%] mx-auto'
-              />
-            </div>
-
-          </div>
-        </div>
-     
-
-      
-        <div className="block lg:hidden h-full w-full">
-          <div className="relative  bg-gray-100 rounded-xl py-4 overflow-hidden w-full h-[40vh] flex justify-center items-end">
-
-            <div className="absolute -top-24 -right-28 w-[100%]">
-              <Image
-                alt='image'
-                src={IMAGES.mandalaimg}
-                width={600}
-                height={600}
-                className='object-scale-down w-full h-full'
-              />
-            </div>
-
-            <div className="w-full px-4">
-              <div className="text-5xl font-semibold text-[#800000]">40% 0ff</div>
-              <div className="text-md mt-3 font-medium  text-gray-600 flex items-center justify-start gap-2">
-                <span className="pr-2">This Diwali get</span>
-                  <Button isIconOnly variant="faded" className="rounded-full ">
-                  <ArrowUpRight className="h-5" />
-                  </Button>
-                
-              </div>
-              <div className="text-md font-medium text-gray-600">on all services of Naira Villa Goa</div>
-            </div>
-
-          </div>
-        </div>
-    
-
-       
-        <div className="hidden lg:grid grid-cols-2 pt-4 gap-2">
-          <div className="pr-12 mb-5">
-            <h3 className="text-gray-500 font-semibold text-base">
-              Why Choose Prospera ?
-            </h3>
-            <h6 className="text-gray-500 text-sm">
-              Choose Naira Villa Goa for a seamless blend of strategic
-              prowess, innovative web design and development, targeted digital
-              marketing, and meticulous revenue management. With an adept team
-              guiding every step, we craft comprehensive strategies tailored to
-              your business goals. From thorough market research to captivating
-              website creation, dynamic digital campaigns, and revenue
-              optimization tactics, we deliver results driven solutions. Our
-              holistic approach ensures your brand stands out amidst
-              competition, maximizing revenue and guest satisfaction. Entrust
-              Naira Villa Goa to elevate your business, leveraging
-              expertise, and cutting edge techniques for unparalleled success in
-              the dynamic hospitality industry.
-            </h6>
-          </div>
-          <div className="pl-10">
-            <h3 className="text-gray-500 font-semibold text-base">
-              What is Brand Management and Why is it Important?
-            </h3>
-            <h6 className="text-gray-500 text-sm">
-              Brand management involves shaping a brand&apos;s image, perception, and
-              reputation, crucial for differentiation, trust building, and
-              revenue growth. Naira Villa Goa specializes in brand
-              management, offering tailored solutions to enhance brand equity
-              and visibility. Through strategic planning and innovative branding
-              initiatives, Prospera helps businesses craft compelling
-              narratives, engage with audiences effectively, and build enduring
-              brand relationships. Partner with Prospera to fortify your brand&apos;s
-              position and drive sustainable growth in today&apos;s competitive
-              landscape
-            </h6>
-          </div>
-          <div className="pr-12 mb-5">
-            <h3 className="text-gray-500 font-semibold text-base">
-              How Can Digital Marketing Enhance Brand Visibility?
-            </h3>
-            <h6 className="text-gray-500 text-sm">
-              Digital marketing utilizes online channels like social media,
-              search engines, email, and content marketing to boost brand
-              visibility and drive traffic. We at Naira Villa Goa
-              specializes in crafting tailored strategies across these channels
-              just for your product . From targeted social media campaigns to
-              SEO and email marketing, Prospera ensures your brand stands out,
-              driving sustained growth in the digital landscape.
-            </h6>
-          </div>
-          <div className="pl-10">
-            <h3 className="text-gray-500 font-semibold text-base">
-              How Does Revenue Management Impact Brand Growth?
-            </h3>
-            <h6 className="text-gray-500 text-sm">
-              Revenue management optimizes pricing, distribution, and inventory
-              to maximize profitability and brand value. Naira Villa Goa
-              specializes in tailored strategies that align with market demand,
-              driving sustainable growth and maintaining brand consistency. With
-              meticulous analysis and strategic implementation, Prospera helps
-              businesses unlock revenue potential, enhance customer
-              satisfaction, and stay competitive. Partner with Prospera to
-              optimize revenue and elevate your brand&apos;s performance
-            </h6>
-          </div>
-        </div>
-      </div> */}
-
-      <div className="w-full bg-white mb-7 mt-14">
-        <div className="w-[90%] lg:w-[80%] mx-auto flex items-center justify-between py-2">
+    <footer className="w-full h-fit relative bg-white text-black mb-10 lg:mt-16">
+      <div className="w-[95%] mx-auto">
+        <div className="mx-auto lg:flex w-full items-center justify-between py-2">
           <div className="md:flex items-center md:justify-between gap-4">
-            <Link href="/" className="flex justify-center items-center gap-5">
-              <img
-                src={IMAGES.mainLogo}
-                alt="prospera-logo"
-                className="w-10 h-10 object-contain"
-              />
-              <div className="flex flex-col">
-                <span className="text-[#800000] font-semibold leading-tight">
-                  Prospera
-                </span>
-                <span className="font-semibold text-gray-400 leading-tight">
-                  Hospitality
-                </span>
+            <p className="text-3xl lg:text-4xl text-[#333333] font-semibold antialiased"
+              style={{
+                fontFamily: "Times New Roman, Georgia, serif",
+                fontWeight: "bold",
+              }}
+            >
+              {siteConfig.name}
+            </p>
+          </div>
+          <div className="flex mt-6 lg:mt-0 justify-between items-center gap-4 text-white">
+            <h4 className="text-gray-600">Let&apos;s Retreat Together!</h4>
+            <Link
+              href={`/filterpage?checkindate=04-12-2024&checkoutdate=05-12-2024&adultsSelect=1&childSelect=0`}
+            >
+              <button className="border border-black-900 bg-[#F5F5DC] px-8 py-2  lg:py-2 rounded-full text-[#333333] flex-1 font-medium hover:bg-red-900 hover:text-white">
+                Book Now
+              </button>
+            </Link>
+
+          </div>
+        </div>
+        <Divider className="w-full" />
+
+
+        <div className="flex justify-center items-center text-center pt-4 gap-2">
+          <div className="p-2">
+            <p className="text-black/50  text-start">
+              {siteConfig.description}
+            </p>
+          </div>
+        </div>
+        <Divider className="w-full mt-4" />
+
+        <div className="py-5 grid grid-cols-1 lg:grid-cols-5 gap-0 lg:gap-15 place-content-center">
+          <div className=" flex flex-col gap-5 p-5 lg:py-5">
+            <h2 className="text-xl font-medium text-[#333333]">
+              Contact Information:
+            </h2>
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-3">
+                <h4 className="text-gray-500">Villa</h4>
+                <span className="text-gray-500">-</span>
+                <p className="text-gray-500">
+                108, Tranquil Building, H.No, 3/166, Near Bank of India, Saligao, Saligao, Goa 403521
+                </p>
               </div>
-            </Link>
 
+              <div className="flex gap-3">
+                <h4 className="text-gray-500">Phone</h4>
+                <span className="text-gray-500">-</span>
+                <div className="flex flex-col">
+                  <Link href="tel:9898309244" className="text-gray-500">
+                    +91 - 77209 44672,
+                  </Link>
+                  <Link href="tel:7285899244" className="text-gray-500">
+                    +91 - 77209 44672
+                  </Link>
+                  {/* <Link href="tel:9136434899" className="text-gray-500">
+                    +91 - 9136434899
+                  </Link> */}
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <h4 className="text-gray-500">Email</h4>
+                <span className="text-gray-500">-</span>
+                <Link
+                  href="mailto:hotelrajdhani22@gmail.com"
+                  className="text-gray-500"
+                >
+                  nairavillagoa@gmail.com
+                </Link>
+              </div>
+
+              <div className="flex gap-3">
+                <h4 className="text-gray-500">Website</h4>
+                <span className="text-gray-500">-</span>
+                <Link
+                  href="www.nairavilla.com"
+                  className="text-gray-500"
+                >
+                  www.nairavilla.com
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="flex lg:mt-0 justify-between items-center gap-4 text-gray-500 ">
 
-            <Link href="/contact-us" className="flex">
-              <Button variant="shadow" color="default" className="bg-[#800000] text-white" radius="full" size="md">
-                Let&apos;s Get Started
-              </Button>
-            </Link>
+          {/* <div className="flex flex-col gap-5 p-5">
+            <h2 className="text-xl font-medium text-[#333333]">Quick Links:</h2>
+            {siteConfig.navItems.map((item) => (
+              <div key={item.label}>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = item.href;
+                  }}
+                  className="text-gray-500 hover:underline"
+                >
+                  {item.label}
+                </a>
+              </div>
+            ))}
+          </div> */}
 
+          <div className=" flex flex-col gap-5 p-5">
+            <h2 className="text-xl font-medium text-[#333333]">Socials:</h2>
+            <div className="flex  items-center gap-5">
+              {siteConfig.socialItems.map(({ label, href, icon: Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-gray-800 hover:text-blue-500 transition-colors bg-[#F5F5DC] p-2 rounded-full "
+                >
+                  <Icon className="w-6 h-6 text-[#333333]" />
+                </Link>
+              ))}
+            </div>
           </div>
+
+
+          <div className=" lg:flex flex-col gap-5 p-5 col-span-3 hidden">
+            <h2 className="text-xl font-medium text-[#333333]">
+              Location:
+            </h2>
+            <div className="w-full h-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d960.9574135998216!2d73.78815209919739!3d15.547259999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc1d5fecab593%3A0xc794d25a0a519e81!2sBank%20of%20India%20-%20Saligao%20Branch!5e0!3m2!1sen!2sin!4v1744020923750!5m2!1sen!2sin"
+                width="700"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+
+
+        </div>
+        <Divider className="w-full mt-4" />
+        <div className="flex py-5">
+          <span className="text-gray-500">
+            2025@Naira Villa. All rights reserved.{" "}
+          </span>
         </div>
       </div>
-
-      <footer className="w-full h-fit relative bg-gray-100 text-gray-500">
-        <div className="w-[90%] lg:w-[80%] mx-auto">
-          {/* <Divider className="w-full" /> */}
-
-          <div className="flex w-full mx-auto flex-col lg:flex-row py-5 text-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-[0.25rem]">
-              <div className="p-3 px-0 flex flex-col gap-3">
-                <h4 className="font-semibold">Our Office</h4>
-                <p className="text-gray-400 text-sm">
-                  Office No.1006
-                  Juhi Niharika Mirage, 274, Kopra Rd, Sector 10, Kharghar, Navi Mumbai, Maharashtra 410210.
-                </p>
-                <a href="https://maps.app.goo.gl/LQZzRHKRaVXkZrc59" target="_blank" rel="noopener noreferrer" className="font-semibold text-themeColor">
-                  Locate Us
-                </a>
-
-              </div>
-
-              <div className="px-0 lg:px-3 p-3 flex flex-col gap-3">
-                <h4 className="font-semibold">Call us</h4>
-                <p className="text-gray-400">
-                  Request a quote or just chat about your next vacation
-                </p>
-                <p className="text-themeColor font-semibold">7021719016</p>
-              </div>
-
-              <div className="px-0 lg:px-3 p-3 flex flex-col gap-3">
-                <h4 className="font-semibold">Write to us</h4>
-                <p className="text-gray-400">
-                  Be it an inquiry, feedback, or a simple suggestion.
-                </p>
-                <Link href="mailto:admin@prosperaahospitality.com" className="mt-1 text-themeColor font-semibold">
-                  admin@prosperaahospitality.com
-                </Link>
-              </div>
-
-              <div className="px-0 lg:px-3 p-3 flex flex-col gap-3">
-                <p className="font-semibold">Connect with us:</p>
-                <div className="flex space-x-4 mt-4 md:mt-0 text-themeColor ">
-                  {socialLinks.map((link, index) => (
-                    <Link
-                      key={index}
-                      href={link.href}
-                      className="bg-white text-[#800000] hover:text-white hover:bg-[#800000] p-2 rounded-full"
-                    >
-                      {iconComponents[link.icon]}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex w-full mx-auto flex-col lg:flex-row py-5 text-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-[0.25rem]">
-              <div className="p-3 px-0 flex flex-col gap-3">
-                <h4 className="font-semibold">Sales</h4>
-                <Link href="mailto:admin@prosperaahospitality.com" className="text-gray-400 text-sm">
-                  admin@prosperaahospitality.com
-                </Link>
-                <p className="text-themeColor font-semibold">Phone no. - +91 70217 19016</p>
-              </div>
-
-              <div className="px-0 lg:px-3 p-3 flex flex-col gap-3">
-                <h4 className="font-semibold">Support</h4>
-                <Link href="mailto:admin@prosperaahospitality.com" className="text-gray-400 text-sm">
-                  admin@prosperaahospitality.com
-                </Link>
-                <p className="text-themeColor font-semibold">Phone no. - +91 70217 19016</p>
-              </div>
-
-              <div className="px-0 lg:px-3 p-3 flex flex-col gap-3">
-                <h4 className="font-semibold">Tech Support</h4>
-                <Link href="mailto:admin@prosperaahospitality.com" className="text-gray-400 text-sm">
-                  tech@prosperaahospitality.com
-                </Link>
-                <p className="text-themeColor font-semibold">Phone no. - +91 70217 19016</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full">
-            <div className="flex w-full mx-auto flex-col lg:flex-row py-5 lg:py-10 border-b-2 border-gray-300 gap-[0.75rem]">
-              <div className="flex-1">
-                <div className="w-full lg:w-[80%] flex flex-col gap-4">
-                  <h2 className="text-2xl font-semibold">
-                    Keep traveling all year round!
-                  </h2>
-                  <p className="text-gray-600">
-                    Subscribe to our newsletter to find travel inspiration in your
-                    inbox.
-                  </p>
-
-                  <div className="flex flex-col gap-5">
-                    <div>
-                      <div className="flex justify-between gap-5 flex-col lg:flex-row">
-                        <input
-                          type="text"
-                          placeholder="Full Name"
-                          className="border flex-1 p-3 rounded-xl font-normal"
-                          value={fullName}
-                          onChange={(e) => setFullName(e.target.value)}
-                          required
-                        />
-                        <input
-                          type="email"
-                          placeholder="Email ID"
-                          className="border flex-1 p-3 rounded-xl font-normal"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between gap-5 flex-col lg:flex-row">
-                        <input
-                          type="text"
-                          placeholder="Phone Number"
-                          className="border flex-1 p-3 rounded-xl font-normal"
-                          value={phoneNumber}
-                          onChange={(e) => setPhoneNumber(e.target.value)}
-                          required
-                        />
-                        <button
-                          type="button"
-                          className="border flex-1 p-3 rounded-xl bg-[#800000] text-white font-medium"
-                          onClick={() => handleSubmit()}
-                        >
-                          Get a call back!
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex-1 flex flex-col gap-5 p-3">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-5 place-content-center">
-                  {/* <div>
-                  <h3 className="font-semibold mb-4">Main Links</h3>
-                  <ul className="space-y-1 text-gray-600 flex flex-col">
-                    {siteConfig.ServicesItems.map((item) => (
-                      <div key={item.href}>
-                        <Link
-                          className={`link ${pathname === item.href
-                            ? "text-primary font-extralight"
-                            : "text-white font-extralight text-sm"
-                            }`}
-                          href={item.href}
-                        >
-                          {item.label}
-                        </Link>
-                      </div>
-                    ))}
-                  </ul>
-                </div> */}
-
-                  <div>
-                    <h3 className="font-semibold mb-4">Support</h3>
-                    <ul className="space-y-1 text-gray-600 flex flex-col">
-                      {siteConfig.navItems.map((item) => (
-                        <div key={item.href}>
-                          <Link
-                            className={`link ${pathname === item.href
-                              ? "text-[#800000] font-semibold"
-                              : "text-gray-500 font-extralight text-sm"
-                              }`}
-                            href={item.href}
-                          >
-                            {item.label}
-                          </Link>
-                        </div>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold mb-4">Quick Links</h3>
-                    <ul className="space-y-1 text-gray-600 flex flex-col">
-                      {siteConfig.PoliciesItems.map((item) => (
-                        <div key={item.href}>
-                          <Link
-                            className={`link ${pathname === item.href
-                              ? "text-[#800000] font-semibold"
-                              : "text-gray-500 font-extralight text-sm"
-                              }`}
-                            href={item.href}
-                          >
-                            {item.label}
-                          </Link>
-                        </div>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* <Divider className="w-full" /> */}
-          <div className="w-full flex flex-col md:flex-row justify-between pt-4">
-            <p className="mt-4 pb-10 text-sm text-gray-400 font-semibold">
-              &copy; Copyright 2024. All Rights Reserved by Naira Villa Goa
-              Pvt. Ltd.
-            </p>
-            <div className="flex gap-4 items-center">
-              <Image
-                src={IMAGES.isologo}
-                alt="isologo"
-                width={60}
-                height={60}
-                className="rounded-xl"
-              />
-              <p className="text-gray-400 font-semibold">An ISO certified Company</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
+    </footer>
   );
 }
