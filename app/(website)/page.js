@@ -21,7 +21,7 @@ const Home = () => {
       <Allpackages />
       <OurOffers />
       <Blogs />
-      <AboutTest />
+      {/* <AboutTest /> */}
       {/* <InstagramFeed />
       <Testimonial />
       <OurClients />
