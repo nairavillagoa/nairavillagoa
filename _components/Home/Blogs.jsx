@@ -9,7 +9,7 @@ import { AirVent, Tv, Wifi, HandHeart, CircleParking, Refrigerator } from 'lucid
 const Blogs = () => {
 
     return (
-        <div>
+        <div className='bg-[#f4f1ed]'>
 
 <div className="hidden relative w-full h-[40vh] md:h-[45vh] lg:h-[60vh] min-h-screen lg:flex justify-center items-center">
             {/* Background Image */}
@@ -205,7 +205,7 @@ const Blogs = () => {
         </div>
 
 
-        <div className="lg:hidden relative w-full h-full min-h-screen flex justify-start items-start">
+        <div className="lg:hidden relative w-full h-full min-h-screen flex justify-start items-start mt-16 bg-[#f4f1ed]">
             {/* Background Image */}
             <img
                 src={IMAGES["59"]}

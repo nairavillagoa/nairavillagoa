@@ -32,7 +32,7 @@ const Allpackages = () => {
                 {/* Text Section */}
                 <div className='flex flex-col lg:justify-between h-full w-full lg:w-[80%] lg:p-10'>
                     <p className="text-4xl lg:text-6xl h-full font-serif text-[#5a3e2b] mb-4 text-start self-start" style={{ fontFamily: '"Playfair Display", serif' }}>The Family Suite</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-md text-gray-600 mt-4 lg:mt-0">
                         Showcasing one of our finest rooms, this elegant space features a plush king bed, warm lighting, and a serene vibe. Enjoy a private balcony, swimming pool, AC comfort, and modern amenities like power backup, satellite TV, free Wi-Fi, daily housekeeping, 24/7 food delivery, caretaker support, and laundry service.
                     </p>
                     <div className="flex md:grid-cols-3 mt-8 justify-center items-center">

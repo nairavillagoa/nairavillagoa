@@ -51,7 +51,7 @@ const HomeCards = () => {
                             Welcome to your luxurious home away from home
                         </p>
                         <p
-                            className="mt-16 text-md w-full lg:w-[65%] text-red-800 font-semibold"
+                            className="mt-16 text-md w-full lg:w-[65%] text-red-800 lg:font-semibold"
                             style={{ wordSpacing: '0.1em' }}
                         >
                             Best Villa in Saligao and Goa? Welcome to Naira Villa’s – Your Luxurious Getaway in Goa!
@@ -60,7 +60,7 @@ const HomeCards = () => {
                             Experience comfort in our 3 BHK villa with a private pool in Saligao, North Goa. Enjoy AC bedrooms, a fully equipped kitchen, daily housekeeping, free WiFi, private parking, and 24/7 food delivery. Perfect for families & groups!
                         </p>
                     </motion.div>
-                    <motion.div className="w-full lg:w-[50%] flex justify-center items-center" ref={ref}
+                    <motion.div className="w-full lg:w-[50%] flex justify-center items-center mt-4 lg:mt-0" ref={ref}
                         variants={fadeInVariant}
                         initial="hidden"
                         animate={isInView ? 'visible' : 'hidden'}>
