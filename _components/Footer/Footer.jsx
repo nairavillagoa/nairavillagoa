@@ -146,7 +146,7 @@ export default function Footer() {
       };
 
   return (
-    <footer className="w-full h-fit relative bg-[#f4f1ed] text-black mb-10 lg:pt-16">
+    <footer className="w-full h-fit relative bg-[#f4f1ed] text-black mb-10 pt-16">
       <motion.div className="w-[95%] mx-auto" ref={ref}
         variants={fadeInVariant}
         initial="hidden"
@@ -165,7 +165,7 @@ export default function Footer() {
           <div className="flex mt-6 lg:mt-0 justify-between items-center gap-4 text-white">
             <h4 className="text-gray-600">Let&apos;s Retreat Together!</h4>
 
-            <button className="border border-black-900 bg-[#F5F5DC] px-8 py-2  lg:py-2 rounded-full text-[#333333] flex-1 font-medium hover:bg-red-900 hover:text-white" onClick={() => handleOpen()}>
+            <button className="border border-black-900 bg-[#efebe5] px-8 py-2  lg:py-2 rounded-full text-[#333333] flex-1 font-medium hover:bg-red-900 hover:text-white" onClick={() => handleOpen()}>
               Book Now
             </button>
 
@@ -257,7 +257,7 @@ export default function Footer() {
                     +91 - 77209 44672,
                   </Link>
                   <Link href="tel:7285899244" className="text-gray-500">
-                    +91 - 77209 44672
+                    +91 - 89565 67937
                   </Link>
                   {/* <Link href="tel:9136434899" className="text-gray-500">
                     +91 - 9136434899
@@ -283,7 +283,7 @@ export default function Footer() {
                   href="www.nairavilla.com"
                   className="text-gray-500"
                 >
-                  www.nairavilla.com
+                  www.nairavillagoa.com
                 </Link>
               </div>
             </div>
@@ -317,7 +317,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="text-gray-800 hover:text-blue-500 transition-colors bg-[#F5F5DC] p-2 rounded-full "
+                  className="text-gray-800 hover:text-blue-500 transition-colors bg-[#efebe5] p-2 rounded-full "
                 >
                   <Icon className="w-6 h-6 text-[#333333]" />
                 </Link>

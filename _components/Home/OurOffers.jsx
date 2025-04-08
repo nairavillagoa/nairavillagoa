@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image'
 import IMAGES from '@/public/index'
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,31 +9,15 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, useInView } from 'framer-motion';
+
 
 const OurOffers = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' }); // trigger once when ~100px in view
 
-  const fadeInVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        ease: 'easeOut',
-      },
-    },
-  };
 
 
   return (
     <section className="bg-[#f4f1ed] py-4 px-4 lg:py-16 lg:px-6 md:px-20" >
-      <motion.div className="flex flex-col md:flex-row gap-8" ref={ref}
-        variants={fadeInVariant}
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}>
+      <div className="flex flex-col md:flex-row gap-8" >
         <div className="relative w-full lg:w-[30%]">
           <div className='w-full h-full'>
             <img
@@ -72,7 +56,7 @@ const OurOffers = () => {
           </div>
 
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
