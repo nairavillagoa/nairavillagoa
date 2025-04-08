@@ -1,14 +1,33 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import IMAGES from '@/public';
+import { motion, useInView } from 'framer-motion';
 
 const NumberStats = () => {
+
+    const ref = useRef(null);
+        const isInView = useInView(ref, { once: true, margin: '-100px' }); // trigger once when ~100px in view
+    
+        const fadeInVariant = {
+            hidden: { opacity: 0, y: 50 },
+            visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                    duration: 1,
+                    ease: 'easeOut',
+                },
+            },
+        };
 
 
     return (
         <div className="w-full h-full flex flex-col justify-center items-center bg-[#efebe5] py-16 lg:px-16 lg:py-16">
             <h2 className="text-4xl md-text-5xl lg:text-6xl text-center mb-6 border-b-2 pb-2" style={{ fontFamily: '"Playfair Display", serif' }}>Accommodations</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full">
+            <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full" ref={ref}
+                        variants={fadeInVariant}
+                        initial="hidden"
+                        animate={isInView ? 'visible' : 'hidden'}>
 
 
                 {/* New 03 AC Bedrooms */}
@@ -42,7 +61,7 @@ const NumberStats = () => {
                     </div>
                 </div>
 
-            </div>
+            </motion.div>
         </div>
 
     );

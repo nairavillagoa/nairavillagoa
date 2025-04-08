@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Modal,
   ModalContent,
@@ -19,6 +19,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import Swal from 'sweetalert2';
+import { motion, useInView } from 'framer-motion';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -129,9 +130,27 @@ export default function Footer() {
     onClose();
   };
 
+  const ref = useRef(null);
+      const isInView = useInView(ref, { once: true, margin: '-100px' }); // trigger once when ~100px in view
+    
+      const fadeInVariant = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 1,
+            ease: 'easeOut',
+          },
+        },
+      };
+
   return (
-    <footer className="w-full h-fit relative bg-white text-black mb-10 lg:mt-16">
-      <div className="w-[95%] mx-auto">
+    <footer className="w-full h-fit relative bg-[#f4f1ed] text-black mb-10 lg:pt-16">
+      <motion.div className="w-[95%] mx-auto" ref={ref}
+        variants={fadeInVariant}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}>
         <div className="mx-auto lg:flex w-full items-center justify-between py-2">
           <div className="md:flex items-center md:justify-between gap-4">
             <p className="text-3xl lg:text-4xl text-[#333333] font-semibold antialiased"
@@ -331,7 +350,7 @@ export default function Footer() {
             2025@Naira Villa. All rights reserved.{" "}
           </span>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

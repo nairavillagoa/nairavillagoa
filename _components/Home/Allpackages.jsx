@@ -1,18 +1,34 @@
 'use client'
 import IMAGES from '@/public';
 import { AirVent, Tv, Wifi } from 'lucide-react';
-import React, { useState } from 'react';
-import { motion } from "framer-motion";
+import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion, useInView } from 'framer-motion';
 
 const Allpackages = () => {
 
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: '-100px' }); // trigger once when ~100px in view
 
+    const fadeInVariant = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1,
+                ease: 'easeOut',
+            },
+        },
+    };
 
 
     return (
         <section className="bg-[#f4f1ed] py-16 lg:px-6 md:px-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-4 px-4 lg:py-0 lg:px-0">
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-4 px-4 lg:py-0 lg:px-0" ref={ref}
+                        variants={fadeInVariant}
+                        initial="hidden"
+                        animate={isInView ? 'visible' : 'hidden'}>
                 {/* Text Section */}
                 <div className='flex flex-col lg:justify-between h-full w-full lg:w-[80%] lg:p-10'>
                     <p className="text-4xl lg:text-6xl h-full font-serif text-[#5a3e2b] mb-4 text-start self-start" style={{ fontFamily: '"Playfair Display", serif' }}>The Family Suite</p>
@@ -93,7 +109,7 @@ const Allpackages = () => {
                     </div>
 
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 };

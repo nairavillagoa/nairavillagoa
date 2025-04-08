@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -8,9 +8,26 @@ import "swiper/css/autoplay"; // Import autoplay styles
 import { Navigation, Autoplay } from "swiper/modules"; // Import Autoplay module
 import { ChevronLeft, ChevronRight, UserRound } from "lucide-react";
 import IMAGES from "@/public";
+import { motion, useInView } from 'framer-motion';
 
 
 const AboutTest = () => {
+
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: '-100px' }); // trigger once when ~100px in view
+  
+    const fadeInVariant = {
+      hidden: { opacity: 0, y: 50 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 1,
+          ease: 'easeOut',
+        },
+      },
+    };
+
   const packageReviews = [
     {
       title: "Perfect Family Getaway",
@@ -60,7 +77,10 @@ const AboutTest = () => {
 
   return (
     <div className=" bg-[#efebe5]">
-      <div className="flex flex-col gap-8 lg:gap-10 justify-center items-center py-20 w-[95%] mx-auto">
+      <motion.div className="flex flex-col gap-8 lg:gap-10 justify-center items-center py-20 w-[95%] mx-auto" ref={ref}
+        variants={fadeInVariant}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}>
         <h2 className="text-2xl lg:text-3xl text-gray-600 font-bold underline decoration-themeColor">
           Explore the Customer Feedback
         </h2>
@@ -156,7 +176,7 @@ const AboutTest = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

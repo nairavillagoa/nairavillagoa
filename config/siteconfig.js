@@ -37,7 +37,7 @@ export const siteConfig = {
   TermsConditions: "Terms & Conditions",
   PrivacyPolicy: "Privacy Policy",
   RefundPolicy: "Refund Policy",
-  description: `Welcome to Naira Villa – your private escape in the heart of Pavagadh and Halol.
+  description: `Welcome to Naira Villa – your private escape in the heart of Saligao and Goa.
 Perfect for families, friends, and travelers seeking comfort and privacy, Naira Villa offers a serene retreat with 3 spacious air-conditioned bedrooms, 2 air-conditioned living rooms, and a private swimming pool.
 
 Whether you're lounging by the pool, relaxing in our cozy interiors, or exploring nearby attractions, Naira Villa combines modern amenities with homely charm to ensure a peaceful and memorable stay. Enjoy personalized hospitality and unwind in your own private paradise at Naira Villa.`,
