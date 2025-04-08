@@ -82,7 +82,7 @@ const Allpackages = () => {
                 <div className="relative">
                     <div className='lg:p-10'>
                         <img
-                            src={IMAGES["5"]}
+                            src={IMAGES["7"]}
                             alt="The Family Suite"
                             className="w-full h-auto shadow-lg"
                         />

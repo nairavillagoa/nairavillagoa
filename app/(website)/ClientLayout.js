@@ -8,6 +8,7 @@ import { Providers } from "@/app/providers";
 
 export default function ClientLayout({ children }) {
 
+
   return (
     <Providers>
       {/* <NavBar /> */}

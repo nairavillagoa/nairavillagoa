@@ -1,6 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Divider } from "@nextui-org/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure, Input,
+  Textarea, Divider
+} from "@nextui-org/react";
 import { siteConfig } from "@/config/siteconfig";
 import { Link } from "@nextui-org/link";
 
@@ -9,6 +18,7 @@ import { FiFacebook } from "react-icons/fi";
 import { FaInstagram } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { today, getLocalTimeZone } from "@internationalized/date";
+import Swal from 'sweetalert2';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -64,6 +74,61 @@ export default function Footer() {
 
   const checkoutDate = addOneDay(currentDate);
 
+
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleOpen = () => {
+    onOpen();
+  };
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async () => {
+    console.log('Form Data:', formData);
+
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        operation: "serviceContact",
+        formValues: formData,
+      }),
+    });
+
+    if (response.ok) {
+      Swal.fire({
+
+        title: "Form submitted successfully!",
+
+        text: "Team connect with you soon",
+
+        icon: "success"
+
+      }).then((result) => {
+
+
+      });
+    } else {
+
+    }
+
+    onClose();
+  };
+
   return (
     <footer className="w-full h-fit relative bg-white text-black mb-10 lg:mt-16">
       <div className="w-[95%] mx-auto">
@@ -80,15 +145,64 @@ export default function Footer() {
           </div>
           <div className="flex mt-6 lg:mt-0 justify-between items-center gap-4 text-white">
             <h4 className="text-gray-600">Let&apos;s Retreat Together!</h4>
-            <Link
-              href={`/filterpage?checkindate=04-12-2024&checkoutdate=05-12-2024&adultsSelect=1&childSelect=0`}
-            >
-              <button className="border border-black-900 bg-[#F5F5DC] px-8 py-2  lg:py-2 rounded-full text-[#333333] flex-1 font-medium hover:bg-red-900 hover:text-white">
-                Book Now
-              </button>
-            </Link>
+
+            <button className="border border-black-900 bg-[#F5F5DC] px-8 py-2  lg:py-2 rounded-full text-[#333333] flex-1 font-medium hover:bg-red-900 hover:text-white" onClick={() => handleOpen()}>
+              Book Now
+            </button>
+
 
           </div>
+          <Modal isOpen={isOpen} size={"md"} onClose={onClose}>
+            <ModalContent>
+              {(onClose) => (
+                <>
+                  <ModalHeader className="flex flex-col gap-1">Contact Form</ModalHeader>
+                  <ModalBody>
+                    <Input
+                      type="text"
+                      label="Name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      isRequired
+                    />
+                    <Input
+                      type="email"
+                      label="Email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      isRequired
+                    />
+                    <Input
+                      type="tel"
+                      label="Phone Number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      isRequired
+                    />
+                    <Textarea
+                      label="Message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      minRows={3}
+                      isRequired
+                    />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="danger" variant="light" onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button color="default" onClick={() => handleSubmit()}>
+                      Submit
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
+            </ModalContent>
+          </Modal>
         </div>
         <Divider className="w-full" />
 
@@ -112,7 +226,7 @@ export default function Footer() {
                 <h4 className="text-gray-500">Villa</h4>
                 <span className="text-gray-500">-</span>
                 <p className="text-gray-500">
-                108, Tranquil Building, H.No, 3/166, Near Bank of India, Saligao, Saligao, Goa 403521
+                  108, Tranquil Building, H.No, 3/166, Near Bank of India, Saligao, Saligao, Goa 403521
                 </p>
               </div>
 
@@ -193,21 +307,20 @@ export default function Footer() {
           </div>
 
 
-          <div className=" lg:flex flex-col gap-5 p-5 col-span-3 hidden">
+          <div className="flex flex-col gap-5 p-5 lg:col-span-3">
             <h2 className="text-xl font-medium text-[#333333]">
               Location:
             </h2>
-            <div className="w-full h-full">
+            <div className="w-full h-auto aspect-video">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d960.9574135998216!2d73.78815209919739!3d15.547259999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc1d5fecab593%3A0xc794d25a0a519e81!2sBank%20of%20India%20-%20Saligao%20Branch!5e0!3m2!1sen!2sin!4v1744020923750!5m2!1sen!2sin"
-                width="700"
-                height="450"
-                style={{ border: 0 }}
+                className="w-full h-full border-0"
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
+
           </div>
 
 
