@@ -331,8 +331,8 @@ Whether you're lounging by the pool, relaxing in our cozy interiors, or explorin
     },
   ],
   socialItems : [
-    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61562089264990&mibextid=ZbWKwL", icon: FaFacebookF },
-    { label: "Instagram", href: "https://www.instagram.com/prosperahospitality/", icon: FaInstagram },
+    { label: "Facebook", href: "https://www.facebook.com/", icon: FaFacebookF },
+    { label: "Instagram", href: "https://www.instagram.com/nairavillagoa/", icon: FaInstagram },
     { label: "Twitter", href: "https://twitter.com/", icon: FaTwitter },
 ]
 };
