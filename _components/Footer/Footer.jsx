@@ -245,7 +245,8 @@ export default function Footer() {
                 <h4 className="text-gray-500">Villa</h4>
                 <span className="text-gray-500">-</span>
                 <p className="text-gray-500">
-                  108, Tranquil Building, H.No, 3/166, Near Bank of India, Saligao, Saligao, Goa 403521
+                  {/* 108, Tranquil Building, H.No, 3/166, Near Bank of India, Saligao, Saligao, Goa 403521 */}
+                  108, Tranquil Building, H.No, 3/166, Muddavaddi Saligao, Village Panchayat of Saligao, Near Bank of India, Saligao, Bardez Goa, Goa 403521
                 </p>
               </div>
 
