@@ -25,17 +25,9 @@ const OurOffers = () => {
               alt="The Family Suite"
               className="w-full h-[30rem] object-cover shadow-lg"
             />
-            <div className="border px-4 py-2 mt-4 text-center text-gray-700 text-sm bg-white shadow">
+            <div className="border px-4 py-5 mt-4 text-center text-gray-700 text-sm bg-white shadow">
               <p><span className='font-semibold'>Elegant Dining Space: </span>
                 Dine in style with a wooden table, emerald chairs, and warm decor in a cozy, inviting ambiance.</p>
-
-
-
-
-
-
-
-
             </div>
           </div>
 

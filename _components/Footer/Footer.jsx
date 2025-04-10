@@ -165,7 +165,7 @@ export default function Footer() {
           <div className="flex mt-6 lg:mt-0 justify-between items-center gap-4 text-white">
             <h4 className="text-gray-600">Let&apos;s Retreat Together!</h4>
 
-            <button className="border border-black-900 bg-[#efebe5] px-8 py-2  lg:py-2 rounded-full text-[#333333] flex-1 font-medium hover:bg-red-900 hover:text-white" onClick={() => handleOpen()}>
+            <button className="border border-black-900 bg-[rgb(212,204,191)] px-8 py-2  lg:py-2 rounded-full text-[#333333] flex-1 font-medium hover:bg-red-900 hover:text-white" onClick={() => handleOpen()}>
               Book Now
             </button>
 
@@ -318,7 +318,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="text-gray-800 hover:text-blue-500 transition-colors bg-[#efebe5] p-2 rounded-full "
+                  className="text-gray-800 hover:text-blue-500 transition-colors bg-[rgb(212,204,191)] p-2 rounded-full "
                 >
                   <Icon className="w-6 h-6 text-[#333333]" />
                 </Link>
@@ -333,7 +333,7 @@ export default function Footer() {
             </h2>
             <div className="w-full h-auto aspect-video">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d960.9574135998216!2d73.78815209919739!3d15.547259999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc1d5fecab593%3A0xc794d25a0a519e81!2sBank%20of%20India%20-%20Saligao%20Branch!5e0!3m2!1sen!2sin!4v1744020923750!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240.23857803951051!2d73.78988432114214!3d15.54792465397569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfeb85b2970687%3A0x1f9d6f64b3f69cea!2sNaira%20Villa!5e0!3m2!1sen!2sin!4v1744276784097!5m2!1sen!2sin"
                 className="w-full h-full border-0"
                 allowFullScreen=""
                 loading="lazy"
