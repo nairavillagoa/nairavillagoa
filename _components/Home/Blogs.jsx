@@ -80,14 +80,14 @@ const Blogs = () => {
                                     <span className="text-sm font-medium self-center">Free Wifi</span>
                                 </div>
                             </div>
-                            <div className='flex flex-col justify-center items-center'>
+                            {/* <div className='flex flex-col justify-center items-center'>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" className='self-center' width="50" height="50" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21V3h14v18zm1-1h12V4H6zm6-1.77q1.756 0 2.993-1.237T16.231 14t-1.238-2.993T12 9.769t-2.993 1.238T7.769 14t1.238 2.993T12 18.231m0-.931q-.65 0-1.253-.247t-1.059-.703l4.662-4.661q.456.455.703 1.062q.247.606.247 1.249q0 1.375-.962 2.338T12 17.3M8 7q.425 0 .713-.288T9 6t-.288-.712T8 5t-.712.288T7 6t.288.713T8 7m3 0q.425 0 .713-.288T12 6t-.288-.712T11 5t-.712.288T10 6t.288.713T11 7M6 20V4z" /></svg>
                                 </div>
                                 <div>
                                     <span className="text-sm font-medium self-center">Laundry at Extra Charge</span>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className='flex flex-col justify-center items-center'>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" color="currentColor"><path d="M20 22.002v-5.974c0-.95 0-1.423-.158-1.797a2 2 0 0 0-1.046-1.055c-.373-.162-.847-.166-1.796-.174c0 5-5 7-5 7s-5-2-5-7c-.932 0-1.398 0-1.765.152a2 2 0 0 0-1.083 1.083C4 14.604 4 15.07 4 16.002v6" /><path d="m12 13.5l2-1v2zm0 0l-2-1v2zm3.5-7v-1a3.5 3.5 0 1 0-7 0v1a3.5 3.5 0 1 0 7 0" /></g></svg>
@@ -174,7 +174,7 @@ const Blogs = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path fill="currentColor" d="M9 18q.425 0 .713-.288T10 17t-.288-.712T9 16t-.712.288T8 17t.288.713T9 18m3 0q.425 0 .713-.288T13 17t-.288-.712T12 16t-.712.288T11 17t.288.713T12 18m3 0q.425 0 .713-.288T16 17t-.288-.712T15 16t-.712.288T14 17t.288.713T15 18m-6-3q.425 0 .713-.288T10 14t-.288-.712T9 13t-.712.288T8 14t.288.713T9 15m3 0q.425 0 .713-.288T13 14t-.288-.712T12 13t-.712.288T11 14t.288.713T12 15m3 0q.425 0 .713-.288T16 14t-.288-.712T15 13t-.712.288T14 14t.288.713T15 15m-8-3h10v-1q0-2.075-1.463-3.537T12 6T8.463 7.463T7 11zm1.55-1.5q.2-1.275 1.163-2.137T12 7.5t2.288.863T15.45 10.5zM2 22V2h20v20zm2-2h16V4H4zm0 0V4z"/></svg>
                                 </div>
                                 <div>
-                                    <span className="text-sm font-medium flex text-center">03 Attached Bathrooms and 01 Common Bathroom</span>
+                                    <span className="text-sm font-medium flex text-center">02 Attached Bathrooms and 01 Common Bathroom</span>
                                 </div>
                             </div>
                             <div className='flex flex-col justify-center items-center'>
